@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte Instagram - Victor Cruz Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .instagram-post {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, white 2px, transparent 2px);
+            background-size: 100px 100px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px;
+            color: white;
+        }
+
+        .profile-section {
+            margin-bottom: 60px;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 6px solid white;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+        }
+
+        .profile-photo-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 6px solid white;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+        }
+
+        .name {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .projects-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .project-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta {
+            margin-top: 40px;
+        }
+
+        .cta-text {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .website-url {
+            font-size: 20px;
+            background: white;
+            color: black;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .float-1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .float-2 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .float-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 15%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        .float-4 {
+            width: 120px;
+            height: 120px;
+            bottom: 25%;
+            right: 5%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg); 
+                opacity: 0.7;
+            }
+        }
+
+        .download-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .download-btn {
+            background: #007bff;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .download-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .download-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .instruction-box {
+            background: #f8f9fa;
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* Story Format */
+        .instagram-story {
+            width: 1080px;
+            height: 1920px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-left: 50px;
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 80px;
+            color: white;
+        }
+
+        .story-profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid white;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+        }
+
+        .story-name {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .story-title {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        .story-highlight-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 60px 0;
+            width: 100%;
+        }
+
+        .container-wrapper {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-controls">
+        <button class="download-btn" id="downloadPost" onclick="downloadPost()">📥 Baixar POST</button>
+        <button class="download-btn" id="downloadStory" onclick="downloadStory()">📥 Baixar STORY</button>
+        <button class="download-btn" onclick="showInstructions()">❓ Como baixar</button>
+    </div>
+
+    <div class="instruction-box" id="instructions" style="display: none;">
+        <h3>📱 Como baixar as artes:</h3>
+        <p><strong>Método 1 - Botão automático:</strong><br>
+        Aguarde 3 segundos para a biblioteca carregar, depois clique nos botões azuis.</p>
+        
+        <p><strong>Método 2 - Print Screen:</strong><br>
+        1. Clique com botão direito na arte<br>
+        2. "Inspecionar elemento"<br>
+        3. Print da tela e recorte<br>
+        4. Ou use Win + Shift + S</p>
+        
+        <p><strong>Método 3 - Extension:</strong><br>
+        Instale a extensão "GoFullPage" no Chrome para screenshot completo.</p>
+        
+        <button onclick="hideInstructions()" style="margin-top: 10px; padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px;">Fechar</button>
+    </div>
+    
+    <div class="container-wrapper">
+        <!-- Arte para POST (1080x1080) -->
+        <div class="instagram-post" id="instagram-post">
+            <div class="floating-elements">
+                <div class="floating-element float-1"></div>
+                <div class="floating-element float-2"></div>
+                <div class="floating-element float-3"></div>
+                <div class="floating-element float-4"></div>
+            </div>
+            
+            <div class="background-pattern"></div>
+            
+            <div class="content">
+                <div class="profile-section">
+                    <!-- Sua foto real -->
+                    <img src="Meu porti/Imagem do WhatsApp de 2025-10-28 à(s) 18.20.52_851ad504.jpg" alt="Victor Cruz" class="profile-photo">
+                    <div class="name">VICTOR CRUZ</div>
+                    <div class="title">Full-Stack Developer</div>
+                </div>
+
+                <div class="highlight-box">
+                    <div class="projects-preview">
+                        <div class="project-item">
+                            <div class="project-icon">🤖</div>
+                            <div class="project-name">Lead AI</div>
+                            <div class="project-tech">Node.js + IA</div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">💰</div>
+                            <div class="project-name">Crypto Bot</div>
+                            <div class="project-tech">Python + API</div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">🏢</div>
+                            <div class="project-name">Florense</div>
+                            <div class="project-tech">React + AWS</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Projetos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Anos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Sucesso</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta">
+                    <div class="cta-text">🚀 Confira meu portfólio completo</div>
+                    <div class="website-url">victorcruzdov.com</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arte para STORY (1080x1920) -->
+        <div class="instagram-story" id="instagram-story">
+            <div class="floating-elements">
+                <div class="floating-element float-1"></div>
+                <div class="floating-element float-2"></div>
+                <div class="floating-element float-3"></div>
+                <div class="floating-element float-4"></div>
+            </div>
+            
+            <div class="background-pattern"></div>
+            
+            <div class="story-content">
+                <img src="Meu porti/Imagem do WhatsApp de 2025-10-28 à(s) 18.20.52_851ad504.jpg" alt="Victor Cruz" class="story-profile-photo">
+                <div class="story-name">VICTOR CRUZ</div>
+                <div class="story-title">Full-Stack Developer</div>
+
+                <div class="story-highlight-box">
+                    <div class="projects-preview">
+                        <div class="project-item">
+                            <div class="project-icon">🤖</div>
+                            <div class="project-name">Lead AI System</div>
+                            <div class="project-tech">Automação Inteligente</div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">💰</div>
+                            <div class="project-name">Crypto Trading Bot</div>
+                            <div class="project-tech">Algoritmos Avançados</div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">🏢</div>
+                            <div class="project-name">Sistema Florense</div>
+                            <div class="project-tech">Em Produção</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta">
+                    <div class="cta-text" style="font-size: 28px;">🔗 Link na bio</div>
+                    <div class="website-url" style="font-size: 24px; padding: 20px 40px;">Veja meu portfólio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let html2canvasLoaded = false;
+
+        // Incluir html2canvas via CDN
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        script.onload = function() {
+            html2canvasLoaded = true;
+            console.log('html2canvas carregado!');
+            document.getElementById('downloadPost').style.background = '#28a745';
+            document.getElementById('downloadStory').style.background = '#28a745';
+        };
+        document.head.appendChild(script);
+
+        function downloadPost() {
+            if (!html2canvasLoaded) {
+                alert('Aguarde alguns segundos para a biblioteca carregar...');
+                return;
+            }
+
+            html2canvas(document.getElementById('instagram-post'), {
+                width: 1080,
+                height: 1080,
+                scale: 1,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'victor-cruz-portfolio-post-1080x1080.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+            }).catch(err => {
+                console.error('Erro ao gerar imagem:', err);
+                alert('Erro ao baixar. Use o método manual: botão direito > salvar imagem');
+            });
+        }
+
+        function downloadStory() {
+            if (!html2canvasLoaded) {
+                alert('Aguarde alguns segundos para a biblioteca carregar...');
+                return;
+            }
+
+            html2canvas(document.getElementById('instagram-story'), {
+                width: 1080,
+                height: 1920,
+                scale: 1,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'victor-cruz-portfolio-story-1080x1920.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+            }).catch(err => {
+                console.error('Erro ao gerar imagem:', err);
+                alert('Erro ao baixar. Use o método manual: botão direito > salvar imagem');
+            });
+        }
+
+        function showInstructions() {
+            document.getElementById('instructions').style.display = 'block';
+        }
+
+        function hideInstructions() {
+            document.getElementById('instructions').style.display = 'none';
+        }
+
+        // Método alternativo - converter para imagem
+        function convertToImage(elementId, filename) {
+            const element = document.getElementById(elementId);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            if (elementId === 'instagram-post') {
+                canvas.width = 1080;
+                canvas.height = 1080;
+            } else {
+                canvas.width = 1080;
+                canvas.height = 1920;
+            }
+            
+            // Fallback: criar uma versão simplificada
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 60px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('VICTOR CRUZ', canvas.width/2, canvas.height/2);
+            
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>

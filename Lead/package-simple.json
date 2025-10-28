@@ -1,0 +1,14 @@
+{
+  "name": "lead-ai-simple",
+  "version": "1.0.0",
+  "description": "Sistema de Qualificação de Leads com IA - Versão Simplificada",
+  "main": "server-simple.js",
+  "scripts": {
+    "start": "node server-simple.js",
+    "test": "node test-corretora.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

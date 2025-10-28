@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte STORY Instagram - Victor Cruz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .instagram-story {
+            width: 1080px;
+            height: 1920px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, white 2px, transparent 2px);
+            background-size: 100px 100px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 80px;
+            color: white;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid white;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 60px 0;
+            width: 100%;
+        }
+
+        .projects-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .project-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .cta {
+            margin-top: 60px;
+        }
+
+        .cta-text {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .website-url {
+            font-size: 28px;
+            background: white;
+            color: black;
+            padding: 25px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .float-1 {
+            width: 120px;
+            height: 120px;
+            top: 8%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .float-2 {
+            width: 180px;
+            height: 180px;
+            top: 15%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .float-3 {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 12%;
+            animation-delay: 4s;
+        }
+
+        .float-4 {
+            width: 150px;
+            height: 150px;
+            bottom: 30%;
+            right: 8%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-40px) rotate(180deg); 
+                opacity: 0.7;
+            }
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #dc3545;
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #c82333;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.6);
+        }
+
+        .instructions {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 300px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadStory()">⬇️ BAIXAR STORY</button>
+    
+    <div class="instructions">
+        <h3>📱 Arte para STORY</h3>
+        <p><strong>Clique no botão vermelho</strong> para baixar automaticamente!</p>
+        <p>Tamanho: 1080x1920px</p>
+    </div>
+
+    <div class="instagram-story">
+        <div class="floating-elements">
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <div class="background-pattern"></div>
+        
+        <div class="content">
+            <img src="Meu porti/Imagem do WhatsApp de 2025-10-28 à(s) 18.20.52_851ad504.jpg" alt="Victor Cruz" class="profile-photo">
+            <div class="name">VICTOR CRUZ</div>
+            <div class="title">Full-Stack Developer</div>
+
+            <div class="highlight-box">
+                <div class="projects-preview">
+                    <div class="project-item">
+                        <div class="project-icon">🤖</div>
+                        <div class="project-name">Lead AI System</div>
+                        <div class="project-tech">Automação Inteligente</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-icon">💰</div>
+                        <div class="project-name">Crypto Trading Bot</div>
+                        <div class="project-tech">Algoritmos Avançados</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-icon">🏢</div>
+                        <div class="project-name">Sistema Florense</div>
+                        <div class="project-tech">Em Produção</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta">
+                <div class="cta-text">🔗 Link na bio</div>
+                <div class="website-url">Veja meu portfólio</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Carregar html2canvas assim que a página carrega
+        let html2canvasLoaded = false;
+        
+        function loadHtml2Canvas() {
+            return new Promise((resolve, reject) => {
+                if (html2canvasLoaded) {
+                    resolve();
+                    return;
+                }
+                
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+                script.onload = () => {
+                    html2canvasLoaded = true;
+                    resolve();
+                };
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        function downloadStory() {
+            const btn = document.querySelector('.download-btn');
+            btn.textContent = '⏳ GERANDO...';
+            btn.disabled = true;
+            
+            loadHtml2Canvas().then(() => {
+                const element = document.querySelector('.instagram-story');
+                
+                html2canvas(element, {
+                    width: 1080,
+                    height: 1920,
+                    scale: 2, // Maior qualidade
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#000000',
+                    logging: false,
+                    imageTimeout: 15000,
+                    removeContainer: true
+                }).then(canvas => {
+                    // Criar link de download
+                    const link = document.createElement('a');
+                    link.download = 'victor-cruz-story-instagram-HD.png';
+                    link.href = canvas.toDataURL('image/png', 1.0);
+                    
+                    // Forçar download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Restaurar botão
+                    btn.textContent = '✅ BAIXADO!';
+                    setTimeout(() => {
+                        btn.textContent = '⬇️ BAIXAR STORY';
+                        btn.disabled = false;
+                    }, 2000);
+                    
+                }).catch(error => {
+                    console.error('Erro:', error);
+                    createSVGDownload();
+                });
+                
+            }).catch(error => {
+                console.error('Erro ao carregar html2canvas:', error);
+                createSVGDownload();
+            });
+        }
+
+        function createSVGDownload() {
+            // Método alternativo usando SVG (qualidade perfeita)
+            const element = document.querySelector('.instagram-story');
+            const rect = element.getBoundingClientRect();
+            
+            // Criar SVG com o conteúdo
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920">
+                    <foreignObject width="100%" height="100%">
+                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 1080px; height: 1920px; font-family: Arial;">
+                            ${element.outerHTML}
+                        </div>
+                    </foreignObject>
+                </svg>
+            `;
+            
+            const blob = new Blob([svg], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.download = 'victor-cruz-story-instagram-SVG.svg';
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            URL.revokeObjectURL(url);
+            
+            const btn = document.querySelector('.download-btn');
+            btn.textContent = '✅ SVG BAIXADO!';
+            setTimeout(() => {
+                btn.textContent = '⬇️ BAIXAR STORY';
+                btn.disabled = false;
+            }, 2000);
+        }
+
+        // Pré-carregar a biblioteca
+        loadHtml2Canvas();
+    </script>
+</body>
+</html>
