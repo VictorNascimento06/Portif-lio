@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-victor-cruz",
+  "version": "1.0.0",
+  "description": "Portfólio profissional de Victor Cruz - Desenvolvedor Full-Stack",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 3000",
+    "start": "start index.html",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "portfolio",
+    "html",
+    "css",
+    "javascript",
+    "responsive",
+    "developer"
+  ],
+  "author": "Victor Cruz <vhnascimento2808@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/VictorNascimento06/portfolio"
+}

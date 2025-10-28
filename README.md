@@ -1,6 +1,8 @@
-# Portfolio Pessoal
+# 🚀 Portfólio Pessoal - Victor Cruz
 
-Um portfólio pessoal moderno e responsivo criado com HTML5, CSS3 e JavaScript vanilla.
+## Desenvolvedor Full-Stack & Empreendedor
+
+Portfólio profissional criado com HTML5, CSS3 e JavaScript puro, focado em performance e responsividade.
 
 ## 🚀 Características
 
