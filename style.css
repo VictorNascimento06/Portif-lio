@@ -535,6 +535,12 @@ section {
     border-color: #2563eb;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: transparent;
+    opacity: 0;
+}
+
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
