@@ -459,6 +459,10 @@ section {
 }
 
 /* Contact Section */
+.contact {
+    background: white !important;
+}
+
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -514,6 +518,12 @@ section {
     padding: 2rem;
     border-radius: 0 !important;
     box-shadow: none !important;
+}
+
+/* Force no background on contact section and form */
+#contact, .contact, .contact-form, .contact-content {
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .form-group {
