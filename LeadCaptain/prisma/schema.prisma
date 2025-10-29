@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("USER") // USER ou ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relacionamentos
+  landingPages LandingPage[]
+  leads        Lead[]
+  abTests      ABTest[]
+
+  @@map("users")
+}
+
+model LandingPage {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  content     String   // JSON como string para compatibilidade SQLite
+  isActive    Boolean  @default(true)
+  template    String   @default("default")
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relacionamentos
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  leads   Lead[]
+  abTests ABTest[]
+
+  @@map("landing_pages")
+}
+
+model Lead {
+  id              String   @id @default(cuid())
+  email           String
+  name            String?
+  phone           String?
+  source          String? // utm_source
+  medium          String? // utm_medium
+  campaign        String? // utm_campaign
+  landingPageId   String
+  landingPageSlug String?
+  userId          String
+  metadata        String? // JSON como string
+  createdAt       DateTime @default(now())
+
+  // Relacionamentos
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  landingPage LandingPage @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+
+  @@map("leads")
+}
+
+model ABTest {
+  id            String   @id @default(cuid())
+  name          String
+  landingPageId String
+  userId        String
+  variants      String // JSON como string
+  isActive      Boolean  @default(true)
+  startDate     DateTime @default(now())
+  endDate       DateTime?
+  winner        String? // ID da variante vencedora
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relacionamentos
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  landingPage LandingPage @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+
+  @@map("ab_tests")
+}
+
+model Analytics {
+  id              String   @id @default(cuid())
+  landingPageId   String
+  event           String // 'view', 'conversion', 'click', etc.
+  variant         String? // Para A/B testing
+  metadata        String?
+  userAgent       String?
+  ip              String?
+  referrer        String?
+  utmSource       String?
+  utmMedium       String?
+  utmCampaign     String?
+  createdAt       DateTime @default(now())
+
+  @@map("analytics")
+}
